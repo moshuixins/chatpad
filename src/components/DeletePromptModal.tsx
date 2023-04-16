@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { db, Prompt } from "../db";
 import { useApiKey } from "../hooks/useApiKey";
 import { useChatId } from "../hooks/useChatId";
+import Locales from "../locales";
 
 export function DeletePromptModal({ prompt }: { prompt: Prompt }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -33,22 +34,21 @@ export function DeletePromptModal({ prompt }: { prompt: Prompt }) {
               close();
 
               notifications.show({
-                title: "Deleted",
-                message: "Chat deleted.",
+                title: Locales.Notification.Deleted,
+                message: Locales.Notification.DeletedPrompt,
               });
             } catch (error: any) {
               if (error.toJSON().message === "Network Error") {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message: "No internet connection.",
+                  message: Locales.Notification.NetworkError,
                 });
               } else {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message:
-                    "Can't remove chat. Please refresh the page and try again.",
+                  message: Locales.Notification.DeletePromptError,
                 });
               }
             } finally {

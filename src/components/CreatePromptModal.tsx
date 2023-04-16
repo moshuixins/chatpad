@@ -13,6 +13,7 @@ import { IconPlaylistAdd, IconPlus } from "@tabler/icons-react";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import { db } from "../db";
+import Locales from "../locales";
 
 export function CreatePromptModal({ content }: { content?: string }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -34,10 +35,15 @@ export function CreatePromptModal({ content }: { content?: string }) {
         </Tooltip>
       ) : (
         <Button fullWidth onClick={open} leftIcon={<IconPlus size={20} />}>
-          New Prompt
+          {Locales.Home.NewPrompt}
         </Button>
       )}
-      <Modal opened={opened} onClose={close} title="Create Prompt" size="lg">
+      <Modal
+        opened={opened}
+        onClose={close}
+        title={Locales.Alert.CreatePrompt}
+        size="lg"
+      >
         <form
           onSubmit={async (event) => {
             try {
@@ -51,22 +57,22 @@ export function CreatePromptModal({ content }: { content?: string }) {
                 createdAt: new Date(),
               });
               notifications.show({
-                title: "Saved",
-                message: "Prompt created",
+                title: Locales.Notification.Saved,
+                message: Locales.Notification.CreatedPrompt,
               });
               close();
             } catch (error: any) {
               if (error.toJSON().message === "Network Error") {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message: "No internet connection.",
+                  message: Locales.Notification.NetworkError,
                 });
               }
               const message = error.response?.data?.error?.message;
               if (message) {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
                   message,
                 });
@@ -93,7 +99,7 @@ export function CreatePromptModal({ content }: { content?: string }) {
               onChange={(event) => setValue(event.currentTarget.value)}
             />
             <Button type="submit" loading={submitting}>
-              Save
+              {Locales.Alert.Save}
             </Button>
           </Stack>
         </form>

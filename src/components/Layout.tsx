@@ -40,6 +40,7 @@ import { DatabaseModal } from "./DatabaseModal";
 import { LogoText } from "./Logo";
 import { Prompts } from "./Prompts";
 import { SettingsModal } from "./SettingsModal";
+import Locales from "../locales";
 
 declare global {
   interface Window {
@@ -50,7 +51,7 @@ declare global {
 export function Layout() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const [tab, setTab] = useState<"Chats" | "Prompts">("Chats");
+  const [tab, setTab] = useState(Locales.Home.Chats);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const navigate = useNavigate();
   const router = useRouter();
@@ -125,10 +126,10 @@ export function Layout() {
               fullWidth
               value={tab}
               onChange={(value) => setTab(value as typeof tab)}
-              data={["Chats", "Prompts"]}
+              data={[Locales.Home.Chats, Locales.Home.Prompts]}
             />
             <Box sx={{ padding: 4 }}>
-              {tab === "Chats" && (
+              {tab === Locales.Home.Chats && (
                 <Button
                   fullWidth
                   leftIcon={<IconPlus size={20} />}
@@ -136,17 +137,17 @@ export function Layout() {
                     const id = nanoid();
                     db.chats.add({
                       id,
-                      description: "New Chat",
+                      description: Locales.Home.NewChat,
                       totalTokens: 0,
                       createdAt: new Date(),
                     });
                     navigate({ to: `/chats/${id}` });
                   }}
                 >
-                  New Chat
+                  {Locales.Home.NewChat}
                 </Button>
               )}
-              {tab === "Prompts" && <CreatePromptModal />}
+              {tab === Locales.Home.Prompts && <CreatePromptModal />}
             </Box>
           </Navbar.Section>
           <Navbar.Section
@@ -179,8 +180,8 @@ export function Layout() {
             />
           </Navbar.Section>
           <Navbar.Section grow component={ScrollArea}>
-            {tab === "Chats" && <Chats search={search} />}
-            {tab === "Prompts" && (
+            {tab === Locales.Home.Chats && <Chats search={search} />}
+            {tab === Locales.Home.Prompts && (
               <Prompts search={search} onPlay={() => setTab("Chats")} />
             )}
           </Navbar.Section>

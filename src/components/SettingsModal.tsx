@@ -17,6 +17,7 @@ import { cloneElement, ReactElement, useEffect, useState } from "react";
 import { db } from "../db";
 import { availableModels, defaultModel } from "../utils/constants";
 import { checkOpenAIKey } from "../utils/openai";
+import Locales from "../locales";
 
 export function SettingsModal({ children }: { children: ReactElement }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -54,21 +55,21 @@ export function SettingsModal({ children }: { children: ReactElement }) {
                   console.log(apiKey);
                 });
                 notifications.show({
-                  title: "Saved",
-                  message: "Your OpenAI Key has been saved.",
+                  title: Locales.Notification.Saved,
+                  message: Locales.Notification.SavedKey,
                 });
               } catch (error: any) {
                 if (error.toJSON().message === "Network Error") {
                   notifications.show({
-                    title: "Error",
+                    title: Locales.Notification.Error,
                     color: "red",
-                    message: "No internet connection.",
+                    message: Locales.Notification.NetworkError,
                   });
                 }
                 const message = error.response?.data?.error?.message;
                 if (message) {
                   notifications.show({
-                    title: "Error",
+                    title: Locales.Notification.Error,
                     color: "red",
                     message,
                   });
@@ -122,8 +123,8 @@ export function SettingsModal({ children }: { children: ReactElement }) {
             data={availableModels}
           />
           <Alert color="orange" title="Warning">
-            The displayed cost was not updated yet to reflect the costs for each
-            model. Right now it will always show the cost for GPT-3.5.
+            The displayed cost has not yet been updated to reflect the costs for
+            each model. Right now it will always show the cost for GPT-3.5.
           </Alert>
         </Stack>
       </Modal>

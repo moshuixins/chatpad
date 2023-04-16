@@ -8,6 +8,7 @@ import { cloneElement, ReactElement } from "react";
 import { db } from "../db";
 import { DeleteAllDataModal } from "./DeleteAllDataModal";
 import { DeleteChatsModal } from "./DeleteChatsModal";
+import Locales from "../locales";
 
 export function DatabaseModal({ children }: { children: ReactElement }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -89,8 +90,8 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                   "application/json"
                 );
                 notifications.show({
-                  title: "Exporting Data",
-                  message: "Your data is being exported.",
+                  title: Locales.Notification.Export,
+                  message: Locales.Notification.Exported,
                 });
               }}
             >
@@ -110,15 +111,15 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                 })
                   .then(() => {
                     notifications.show({
-                      title: "Importing data",
-                      message: "Your data is being imported.",
+                      title: Locales.Notification.Import,
+                      message: Locales.Notification.Imported,
                     });
                   })
                   .catch((error) => {
                     notifications.show({
-                      title: "Error",
+                      title: Locales.Notification.Error,
                       color: "red",
-                      message: "The file you selected is invalid",
+                      message: Locales.Notification.InvalidFile,
                     });
                   });
               }}

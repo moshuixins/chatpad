@@ -27,11 +27,15 @@ import {
   writingTones,
 } from "../utils/constants";
 import { createChatCompletion } from "../utils/openai";
+import Locales from "../locales";
 
 export function ChatRoute() {
   const chatId = useChatId();
   const apiKey = useLiveQuery(async () => {
-    return (await db.settings.where({ id: "general" }).first())?.openAiApiKey;
+    return (
+      (await db.settings.where({ id: "general" }).first())?.openAiApiKey ||
+      process.env.OPENAI_API_KEY
+    );
   });
   const messages = useLiveQuery(() => {
     if (!chatId) return [];
@@ -68,18 +72,17 @@ export function ChatRoute() {
 
     if (!chatId) {
       notifications.show({
-        title: "Error",
+        title: Locales.Notification.Error,
         color: "red",
-        message: "chatId is not defined. Please create a chat to get started.",
+        message: Locales.Notification.NoChatError,
       });
       return;
     }
-
     if (!apiKey) {
       notifications.show({
-        title: "Error",
+        title: Locales.Notification.Error,
         color: "red",
-        message: "OpenAI API Key is not defined. Please set your API Key",
+        message: Locales.Notification.NoKeyError,
       });
       return;
     }
@@ -165,15 +168,15 @@ export function ChatRoute() {
     } catch (error: any) {
       if (error.toJSON().message === "Network Error") {
         notifications.show({
-          title: "Error",
+          title: Locales.Notification.Error,
           color: "red",
-          message: "No internet connection.",
+          message: Locales.Notification.NetworkError,
         });
       }
       const message = error.response?.data?.error?.message;
       if (message) {
         notifications.show({
-          title: "Error",
+          title: Locales.Notification.Error,
           color: "red",
           message,
         });
@@ -233,7 +236,7 @@ export function ChatRoute() {
                 value={writingCharacter}
                 onChange={setWritingCharacter}
                 data={writingCharacters}
-                placeholder="Character"
+                placeholder={Locales.Chat.Character}
                 variant="filled"
                 searchable
                 clearable
@@ -243,7 +246,7 @@ export function ChatRoute() {
                 value={writingTone}
                 onChange={setWritingTone}
                 data={writingTones}
-                placeholder="Tone"
+                placeholder={Locales.Chat.Tone}
                 variant="filled"
                 searchable
                 clearable
@@ -253,7 +256,7 @@ export function ChatRoute() {
                 value={writingStyle}
                 onChange={setWritingStyle}
                 data={writingStyles}
-                placeholder="Style"
+                placeholder={Locales.Chat.Style}
                 variant="filled"
                 searchable
                 clearable
@@ -263,7 +266,7 @@ export function ChatRoute() {
                 value={writingFormat}
                 onChange={setWritingFormat}
                 data={writingFormats}
-                placeholder="Format"
+                placeholder={Locales.Chat.Format}
                 variant="filled"
                 searchable
                 clearable

@@ -12,6 +12,7 @@ import { notifications } from "@mantine/notifications";
 import { IconPencil } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { db, Prompt } from "../db";
+import Locales from "../locales";
 
 export function EditPromptModal({ prompt }: { prompt: Prompt }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -37,21 +38,21 @@ export function EditPromptModal({ prompt }: { prompt: Prompt }) {
                 chat.content = value;
               });
               notifications.show({
-                title: "Saved",
-                message: "Prompt updated",
+                title: Locales.Notification.Saved,
+                message: Locales.Notification.UpdatedPrompt,
               });
             } catch (error: any) {
               if (error.toJSON().message === "Network Error") {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message: "No internet connection.",
+                  message: Locales.Notification.NetworkError,
                 });
               }
               const message = error.response?.data?.error?.message;
               if (message) {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
                   message,
                 });

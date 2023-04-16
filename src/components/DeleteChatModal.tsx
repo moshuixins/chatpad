@@ -6,6 +6,7 @@ import { cloneElement, ReactElement, useEffect, useState } from "react";
 import { Chat, db } from "../db";
 import { useApiKey } from "../hooks/useApiKey";
 import { useChatId } from "../hooks/useChatId";
+import Locales from "../locales";
 
 export function DeleteChatModal({
   chat,
@@ -29,7 +30,7 @@ export function DeleteChatModal({
   return (
     <>
       {cloneElement(children, { onClick: open })}
-      <Modal opened={opened} onClose={close} title="Delete Chat">
+      <Modal opened={opened} onClose={close} title={Locales.Alert.DeleteChat}>
         <form
           onSubmit={async (event) => {
             try {
@@ -43,22 +44,21 @@ export function DeleteChatModal({
               close();
 
               notifications.show({
-                title: "Deleted",
-                message: "Chat deleted.",
+                title: Locales.Notification.Deleted,
+                message: Locales.Notification.DeletedChat,
               });
             } catch (error: any) {
               if (error.toJSON().message === "Network Error") {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message: "No internet connection.",
+                  message: Locales.Notification.NetworkError,
                 });
               } else {
                 notifications.show({
-                  title: "Error",
+                  title: Locales.Notification.Error,
                   color: "red",
-                  message:
-                    "Can't remove chat. Please refresh the page and try again.",
+                  message: Locales.Notification.DeleteChatError,
                 });
               }
             } finally {
@@ -67,9 +67,9 @@ export function DeleteChatModal({
           }}
         >
           <Stack>
-            <Text size="sm">Are you sure you want to delete this chat?</Text>
+            <Text size="sm">{Locales.Alert.DeleteChatConfirm}</Text>
             <Button type="submit" color="red" loading={submitting}>
-              Delete
+              {Locales.Alert.Delete}
             </Button>
           </Stack>
         </form>

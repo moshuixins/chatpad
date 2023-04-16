@@ -19,6 +19,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { Logo } from "../components/Logo";
 import { SettingsModal } from "../components/SettingsModal";
 import { db } from "../db";
+import Locales from "../locales";
 
 export function IndexRoute() {
   const settings = useLiveQuery(() => db.settings.get("general"));
@@ -28,12 +29,12 @@ export function IndexRoute() {
     <>
       <Center py="xl" sx={{ height: "100%" }}>
         <Container size="sm">
-          <Badge mb="lg">GPT-4 Ready</Badge>
+          <Badge mb="lg">{Locales.Features.Badge}</Badge>
           <Text>
             <Logo style={{ maxWidth: 240 }} />
           </Text>
           <Text mt={4} size="xl">
-            Not just another ChatGPT user-interface!
+            {Locales.Features.MainDescription}
           </Text>
           <SimpleGrid
             mt={50}
@@ -87,20 +88,17 @@ export function IndexRoute() {
 const features = [
   {
     icon: IconCurrencyDollar,
-    title: "Free and open source",
-    description:
-      "This app is provided for free and the source code is available on GitHub.",
+    title: Locales.Features.Title1,
+    description: Locales.Features.Description1,
   },
   {
     icon: IconLock,
-    title: "Privacy focused",
-    description:
-      "No tracking, no cookies, no bullshit. All your data is stored locally.",
+    title: Locales.Features.Title2,
+    description: Locales.Features.Description2,
   },
   {
     icon: IconNorthStar,
-    title: "Best experience",
-    description:
-      "Crafted with love and care to provide the best experience possible.",
+    title: Locales.Features.Title3,
+    description: Locales.Features.Description3,
   },
 ];
