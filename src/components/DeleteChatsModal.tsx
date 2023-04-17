@@ -15,7 +15,7 @@ export function DeleteChatsModal({ onOpen }: { onOpen: () => void }) {
         color="red"
         leftIcon={<IconTrash size={20} />}
       >
-        {Locales.Alert.DeleteChat}
+        {Locales.Database.DeleteChats}
       </Button>
       <Modal
         opened={opened}

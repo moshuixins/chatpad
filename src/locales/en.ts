@@ -21,62 +21,106 @@ const en: LocaleType = {
     Description3:
       "Crafted with love and care to provide the best experience possible.",
   },
+  ModalItem: {
+    Edit: "Edit",
+    Delete: "Delete",
+  },
+  Group: {
+    DarkMode: "Dark Mode",
+    LightMode: "Light Mode",
+    Database: "Database",
+    SourceCode: "Source Code",
+    Twitter: "Follow on Twitter",
+    Feedback: "Give Feedback",
+    Settings: "Settings",
+  },
+  Database: {
+    Title: "Database",
+    Chats: "Chats",
+    Prompts: "Prompts",
+    Messages: "Messages",
+    Export: "Export Data",
+    Import: "Import Data",
+    DeleteChats: "Delete Chats",
+    DeleteAll: "Delete All Data",
+  },
+  Settings: {
+    Title: "Settings",
+    GetKey: "Get your OpenAI Key",
+    Prompt:
+      "The API Key is stored locally on your browser and never sent anywhere else.",
+    Warning: "Warning",
+    WarningDescription:
+      "The displayed cost was not updated yet to reflect the costs for each model. Right now it will always show the cost for GPT-3.5.",
+  },
+  Alert: {
+    Save: "Save",
+    Delete: "Delete",
+    CreatePrompt: "Create Prompt",
+    EditPrompt: "Edit Prompt",
+    DeletePrompt: "Delete Prompt",
+    EditChat: "Edit Chat",
+    DeleteChat: "Delete Chat",
+    DeleteData: "Delete Data",
+    DeleteChatConfirm: "Are you sure you want to delete this chat?",
+    DeleteChatsConfirm: "Are you sure you want to delete your chats?",
+    DeleteAllConfirm: "Are you sure you want to delete your data?",
+    DeletePromptConfirm: "Are you sure you want to delete this prompt?",
+  },
+  Notification: {
+    Error: "Error",
+    Saved: "Saved",
+    SavedKey: "Your OpenAI Key has been saved.",
+    CreatedPrompt: "Prompt created",
+    NetworkError: "No internet connection.",
+    Export: "Exporting Data",
+    Exported: "Your data is being exported.",
+    Import: "Importing Data",
+    Imported: "Your data is being imported.",
+    InvalidFile: "The file you selected is invalid",
+    Deleted: "Deleted",
+    DeletedChat: "Chat deleted",
+    DeleteChatError:
+      "Can't remove chat. Please refresh the page and try again.",
+    DeletedPrompt: "Prompt deleted",
+    DeletePromptError:
+      "Can't remove prompt. Please refresh the page and try again.",
+    UpdatedPrompt: "Prompt updated",
+    NoChatError: "chatId is not defined. Please create a chat to get started.",
+    NoKeyError: "OpenAI API Key is not defined. Please set your API Key",
+  },
   Chat: {
     Character: "Character",
     Tone: "Tone",
     Style: "Style",
     Format: "Format",
+    Prompt: {
+      Default: "You are ChatGPT, a large language model trained by OpenAI.",
+      Character: "You are {character}.",
+      Tone: "Respond in {tone} tone.",
+      Style: "Respond in {style} style.",
+    },
   },
   writingCharacters: [
     {
-      label: "No-Code Builder",
+      label: "Standup Comedian",
       value:
-        "A professional who creates applications, websites, and other software products without writing code, using visual development tools and pre-built components.",
+        "A performer who entertains audiences by telling jokes and humorous stories.",
     },
     {
-      label: "Front-End Developer",
+      label: "Life Coach",
       value:
-        "A professional who designs and develops user interfaces for websites and applications, using HTML, CSS, and JavaScript.",
+        "A professional who helps individuals identify and achieve their personal and professional goals.",
     },
     {
-      label: "Back-End Developer",
+      label: "Career Counselor",
       value:
-        "A professional who builds and maintains the server-side of websites and applications, using technologies like Node.js, Python, and Ruby on Rails.",
+        "A professional who helps individuals explore and choose careers, develop job search strategies, and improve job performance.",
     },
     {
-      label: "Full-Stack Developer",
+      label: "Nutritionist",
       value:
-        "A professional who can work on both the front-end and back-end of websites and applications, handling everything from database design to user interface development.",
-    },
-    {
-      label: "Webflow Developer",
-      value:
-        "A professional who designs and develops websites using Webflow, a visual development platform that allows for advanced customizations without the need for coding skills.",
-    },
-    {
-      label: "Software Developer",
-      value:
-        "A professional who designs, develops, and maintains software applications and systems.",
-    },
-    {
-      label: "UX Designer",
-      value:
-        "A professional who designs user experiences for websites and applications, using research, wireframing, and prototyping techniques to create intuitive interfaces.",
-    },
-    {
-      label: "UI Designer",
-      value:
-        "A professional who designs the visual elements of user interfaces for websites and applications, using tools like Adobe XD, Sketch, and Figma.",
-    },
-    {
-      label: "Web Designer",
-      value:
-        "A professional who designs the visual aspects of websites, including layouts, color schemes, typography, and user interfaces, using tools like Adobe Photoshop, Sketch, and Figma.",
-    },
-    {
-      label: "Product Designer",
-      value:
-        "A professional who designs the overall user experience of a product, including its look and feel, user interface, and interaction design, using tools like Sketch, Figma, and InVision.",
+        "A health professional who specializes in the study of nutrition and its effects on the body.",
     },
     {
       label: "Product Manager",
@@ -84,19 +128,64 @@ const en: LocaleType = {
         "A professional who oversees the development and marketing of a company's products.",
     },
     {
+      label: "Personal Trainer",
+      value:
+        "A fitness professional who works with individuals to develop personalized exercise programs and improve their overall health and fitness.",
+    },
+    {
+      label: "Life Hacker",
+      value:
+        "A person who uses unconventional methods to solve problems and increase productivity in everyday life.",
+    },
+    {
+      label: "Travel Advisor",
+      value:
+        "A professional who helps individuals plan and book travel arrangements.",
+    },
+    {
+      label: "Mindfulness Coach",
+      value:
+        "A professional who helps individuals develop mindfulness practices to reduce stress and improve well-being.",
+    },
+    {
+      label: "Financial Advisor",
+      value:
+        "A professional who provides guidance and advice on financial planning, investment strategies, and retirement planning.",
+    },
+    {
+      label: "Language Tutor",
+      value:
+        "A teacher who helps individuals learn and improve their language skills.",
+    },
+    {
+      label: "Travel Guide",
+      value:
+        "A professional who leads tours and provides information about local attractions and culture.",
+    },
+    {
       label: "Marketing Expert",
       value:
         "A professional who develops and implements marketing strategies to promote products and services.",
     },
     {
-      label: "Growth Hacker",
+      label: "Software Developer",
       value:
-        "A professional who uses creative and analytical marketing techniques to rapidly grow the user base and revenue of a product or service, using channels like social media, email, and SEO.",
+        "A professional who designs, develops, and maintains software applications and systems.",
     },
     {
-      label: "SEO Expert",
+      label: "Dating Coach",
       value:
-        "A professional who optimizes websites and content to improve their visibility and ranking in search engine results pages, using techniques like keyword research, link building, and content optimization.",
+        "A professional who helps individuals improve their dating and relationship skills.",
+    },
+    {
+      label: "DIY Expert",
+      value:
+        "A person who is skilled at completing a wide range of do-it-yourself projects around the home.",
+    },
+    {
+      label: "Journalist",
+      value:
+        "A professional who investigates and reports on current events and news stories.",
     },
     {
       label: "Tech Writer",
@@ -104,49 +193,14 @@ const en: LocaleType = {
         "A professional who writes about technology and related topics for a variety of audiences.",
     },
     {
-      label: "Copywriter",
+      label: "Professional Chef",
       value:
-        "A professional who creates written content for websites, marketing materials, and other media, using persuasive language and storytelling techniques to engage and convert audiences.",
+        "A skilled culinary professional who prepares meals and manages kitchen operations.",
     },
     {
-      label: "Data Scientist",
+      label: "Professional Salesperson",
       value:
-        "A professional who uses statistical and machine learning techniques to analyze large amounts of data and derive insights for business decisions.",
-    },
-    {
-      label: "Machine Learning Engineer",
-      value:
-        "A professional who designs, builds, and maintains systems that use machine learning algorithms to improve automation, accuracy, and decision-making.",
-    },
-    {
-      label: "Database Administrator",
-      value:
-        "A professional who manages and maintains databases for organizations, ensuring data integrity, security, and availability.",
-    },
-    {
-      label: "Systems Administrator",
-      value:
-        "A professional who installs, configures, and maintains the hardware and software infrastructure that supports an organization's IT systems.",
-    },
-    {
-      label: "Network Engineer",
-      value:
-        "A professional who designs, implements, and maintains computer networks for organizations, ensuring connectivity, security, and performance.",
-    },
-    {
-      label: "Cybersecurity Analyst",
-      value:
-        "A professional who protects organizations from cyber attacks by monitoring networks, identifying vulnerabilities, and implementing security measures.",
-    },
-    {
-      label: "DevOps Engineer",
-      value:
-        "A professional who combines software development and IT operations to streamline the deployment and management of software applications.",
-    },
-    {
-      label: "Cloud Architect",
-      value:
-        "A professional who designs and oversees the implementation of cloud computing solutions for organizations, using platforms like AWS, Azure, and Google Cloud.",
+        "A professional who sells products and services to businesses and consumers.",
     },
     {
       label: "Startup Tech Lawyer",
@@ -154,37 +208,52 @@ const en: LocaleType = {
         "A legal professional who specializes in providing legal advice and services to startup technology companies.",
     },
     {
-      label: "Mobile App Developer",
+      label: "Graphic Designer",
       value:
-        "A professional who designs and develops applications for mobile devices, using languages like Java, Kotlin, Swift, and React Native.",
+        "A professional who designs visual materials such as logos, brochures, and websites.",
     },
     {
-      label: "Game Developer",
+      label: "Academic Researcher",
       value:
-        "A professional who designs and develops video games, using game engines like Unity and Unreal Engine and programming languages like C++ and C#.",
+        "A professional who conducts research and produces scholarly work in a particular academic field.",
+    },
+    {
+      label: "Customer Support Agent",
+      value:
+        "A professional who provides assistance and support to customers who have questions or problems with a company's products or services.",
+    },
+    {
+      label: "HR Consultant",
+      value:
+        "A professional who provides guidance and advice to organizations on human resource management and strategy",
     },
   ],
   writingTones: [
     "Assertive",
-    "Professional",
-    "Conversational",
-    "Humorous",
-    "Technical",
-    "Inspirational",
-    "Educational",
-    "Encouraging",
-    "Persuasive",
-    "Assertive",
-    "Analytical",
-    "Optimistic",
-    "Critical",
-    "Creative",
-    "Collaborative",
     "Authoritative",
-    "Inquisitive",
-    "Empathetic",
-    "Thoughtful",
+    "Casual",
+    "Confident",
+    "Condescending",
+    "Conversational",
+    "Diplomatic",
+    "Direct",
+    "Eloquent",
+    "Formal",
+    "Friendly",
+    "Humorous",
     "Informative",
+    "Inspiring",
+    "Intense",
+    "Irritable",
+    "Joking",
+    "Polite",
+    "Sarcastic",
+    "Sincere",
+    "Soothing",
+    "Stern",
+    "Sympathetic",
+    "Tactful",
+    "Witty",
   ],
   writingStyles: [
     "Academic",

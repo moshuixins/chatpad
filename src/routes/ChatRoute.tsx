@@ -56,14 +56,16 @@ export function ChatRoute() {
 
   const getSystemMessage = () => {
     const message: string[] = [];
-    if (writingCharacter) message.push(`You are ${writingCharacter}.`);
-    if (writingTone) message.push(`Respond in ${writingTone} tone.`);
-    if (writingStyle) message.push(`Respond in ${writingStyle} style.`);
-    if (writingFormat) message.push(writingFormat);
-    if (message.length === 0)
+    if (writingCharacter)
       message.push(
-        "You are ChatGPT, a large language model trained by OpenAI."
+        Locales.Chat.Prompt.Character.replace("{character}", writingCharacter)
       );
+    if (writingTone)
+      message.push(Locales.Chat.Prompt.Tone.replace("{tone}", writingTone));
+    if (writingStyle)
+      message.push(Locales.Chat.Prompt.Style.replace("{style}", writingStyle));
+    if (writingFormat) message.push(writingFormat);
+    if (message.length === 0) message.push(Locales.Chat.Prompt.Default);
     return message.join(" ");
   };
 

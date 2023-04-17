@@ -72,7 +72,7 @@ export function EditChatModal({
               data-autofocus
             />
             <Button type="submit" loading={submitting}>
-              Save
+              {Locales.Alert.Save}
             </Button>
           </Stack>
         </form>

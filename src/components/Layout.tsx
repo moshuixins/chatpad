@@ -188,7 +188,11 @@ export function Layout() {
           <Navbar.Section sx={{ borderTop: border }} p="xs">
             <Center>
               <Tooltip
-                label={colorScheme === "dark" ? "Light Mode" : "Dark Mode"}
+                label={
+                  colorScheme === "dark"
+                    ? Locales.Group.LightMode
+                    : Locales.Group.DarkMode
+                }
               >
                 <ActionIcon
                   sx={{ flex: 1 }}
@@ -203,20 +207,20 @@ export function Layout() {
                 </ActionIcon>
               </Tooltip>
               <SettingsModal>
-                <Tooltip label="Settings">
+                <Tooltip label={Locales.Group.Settings}>
                   <ActionIcon sx={{ flex: 1 }} size="xl">
                     <IconSettings size={20} />
                   </ActionIcon>
                 </Tooltip>
               </SettingsModal>
               <DatabaseModal>
-                <Tooltip label="Database">
+                <Tooltip label={Locales.Group.Database}>
                   <ActionIcon sx={{ flex: 1 }} size="xl">
                     <IconDatabase size={20} />
                   </ActionIcon>
                 </Tooltip>
               </DatabaseModal>
-              <Tooltip label="Source Code">
+              <Tooltip label={Locales.Group.SourceCode}>
                 <ActionIcon
                   component="a"
                   href="https://github.com/deiucanta/chatpad"
@@ -227,7 +231,7 @@ export function Layout() {
                   <IconBrandGithub size={20} />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Follow on Twitter">
+              <Tooltip label={Locales.Group.Twitter}>
                 <ActionIcon
                   component="a"
                   href="https://twitter.com/deiucanta"
@@ -238,7 +242,7 @@ export function Layout() {
                   <IconBrandTwitter size={20} />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label="Give Feedback">
+              <Tooltip label={Locales.Group.Feedback}>
                 <ActionIcon
                   component="a"
                   href="https://feedback.chatpad.ai"

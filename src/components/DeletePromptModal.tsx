@@ -24,7 +24,12 @@ export function DeletePromptModal({ prompt }: { prompt: Prompt }) {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Delete Prompt" size="md">
+      <Modal
+        opened={opened}
+        onClose={close}
+        title={Locales.Alert.DeletePrompt}
+        size="md"
+      >
         <form
           onSubmit={async (event) => {
             try {
@@ -57,14 +62,14 @@ export function DeletePromptModal({ prompt }: { prompt: Prompt }) {
           }}
         >
           <Stack>
-            <Text size="sm">Are you sure you want to delete this prompt?</Text>
+            <Text size="sm">{Locales.Alert.DeletePromptConfirm}</Text>
             <Button type="submit" color="red" loading={submitting}>
-              Delete
+              {Locales.Alert.Delete}
             </Button>
           </Stack>
         </form>
       </Modal>
-      <Tooltip label="Delete Prompt">
+      <Tooltip label={Locales.Alert.DeletePrompt}>
         <ActionIcon color="red" size="lg" onClick={open}>
           <IconTrash size={20} />
         </ActionIcon>

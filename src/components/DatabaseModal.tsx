@@ -28,7 +28,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
       <Modal
         opened={opened}
         onClose={close}
-        title="Database"
+        title={Locales.Database.Title}
         size="lg"
         withinPortal
         keepMounted
@@ -46,7 +46,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                 tt="uppercase"
                 fw={700}
               >
-                Chats
+                {Locales.Database.Chats}
               </Text>
             </Card>
             <Card withBorder sx={{ flex: 1, marginLeft: -1 }}>
@@ -60,7 +60,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                 tt="uppercase"
                 fw={700}
               >
-                Messages
+                {Locales.Database.Messages}
               </Text>
             </Card>
             <Card withBorder sx={{ flex: 1, marginLeft: -1 }}>
@@ -74,7 +74,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                 tt="uppercase"
                 fw={700}
               >
-                Prompts
+                {Locales.Database.Prompts}
               </Text>
             </Card>
           </Flex>
@@ -95,7 +95,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
                 });
               }}
             >
-              Export Data
+              {Locales.Database.Export}
             </Button>
             <input
               id="file-upload-btn"
@@ -132,7 +132,7 @@ export function DatabaseModal({ children }: { children: ReactElement }) {
               variant="default"
               leftIcon={<IconDatabaseImport size={20} />}
             >
-              Import Data
+              {Locales.Database.Import}
             </Button>
           </Group>
           <Group>

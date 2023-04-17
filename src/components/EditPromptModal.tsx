@@ -27,7 +27,12 @@ export function EditPromptModal({ prompt }: { prompt: Prompt }) {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Edit Prompt" size="lg">
+      <Modal
+        opened={opened}
+        onClose={close}
+        title={Locales.Alert.EditPrompt}
+        size="lg"
+      >
         <form
           onSubmit={async (event) => {
             try {
@@ -79,12 +84,12 @@ export function EditPromptModal({ prompt }: { prompt: Prompt }) {
               onChange={(event) => setValue(event.currentTarget.value)}
             />
             <Button type="submit" loading={submitting}>
-              Save
+              {Locales.Alert.Save}
             </Button>
           </Stack>
         </form>
       </Modal>
-      <Tooltip label="Edit Prompt">
+      <Tooltip label={Locales.Alert.EditPrompt}>
         <ActionIcon size="lg" onClick={open}>
           <IconPencil size={20} />
         </ActionIcon>

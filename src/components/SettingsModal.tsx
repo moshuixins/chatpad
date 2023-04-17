@@ -42,7 +42,12 @@ export function SettingsModal({ children }: { children: ReactElement }) {
   return (
     <>
       {cloneElement(children, { onClick: open })}
-      <Modal opened={opened} onClose={close} title="Settings" size="lg">
+      <Modal
+        opened={opened}
+        onClose={close}
+        title={Locales.Settings.Title}
+        size="lg"
+      >
         <Stack>
           <form
             onSubmit={async (event) => {
@@ -89,7 +94,7 @@ export function SettingsModal({ children }: { children: ReactElement }) {
                 formNoValidate
               />
               <Button type="submit" loading={submitting}>
-                Save
+                {Locales.Alert.Save}
               </Button>
             </Flex>
           </form>
@@ -100,14 +105,13 @@ export function SettingsModal({ children }: { children: ReactElement }) {
                   href="https://platform.openai.com/account/api-keys"
                   target="_blank"
                 >
-                  Get your OpenAI API key
+                  {Locales.Settings.GetKey}
                 </Anchor>
               </Text>
             </List.Item>
             <List.Item>
               <Text size="sm" color="dimmed">
-                The API Key is stored locally on your browser and never sent
-                anywhere else.
+                {Locales.Settings.Prompt}
               </Text>
             </List.Item>
           </List>
@@ -122,9 +126,8 @@ export function SettingsModal({ children }: { children: ReactElement }) {
             withinPortal
             data={availableModels}
           />
-          <Alert color="orange" title="Warning">
-            The displayed cost has not yet been updated to reflect the costs for
-            each model. Right now it will always show the cost for GPT-3.5.
+          <Alert color="orange" title={Locales.Settings.Warning}>
+            {Locales.Settings.WarningDescription}
           </Alert>
         </Stack>
       </Modal>
