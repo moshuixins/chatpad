@@ -94,6 +94,8 @@ const en: LocaleType = {
     Tone: "Tone",
     Style: "Style",
     Format: "Format",
+    Description:
+      "What would be a short and relevant title for this chat ? You must strictly answer with only the title, no other text is allowed.",
     Prompt: {
       Default: "You are ChatGPT, a large language model trained by OpenAI.",
       Character: "You are {character}.",

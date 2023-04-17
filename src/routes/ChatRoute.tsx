@@ -28,6 +28,7 @@ import {
 } from "../utils/constants";
 import { createChatCompletion } from "../utils/openai";
 import Locales from "../locales";
+import { Stream } from "stream";
 
 export function ChatRoute() {
   const chatId = useChatId();
@@ -112,77 +113,79 @@ export function ChatRoute() {
         })),
         { role: "user", content },
       ]);
-
-      const assistantMessage = result.data.choices[0].message?.content;
-      if (result.data.usage) {
-        await db.chats.where({ id: chatId }).modify((chat) => {
-          if (chat.totalTokens) {
-            chat.totalTokens += result.data.usage!.total_tokens;
-          } else {
-            chat.totalTokens = result.data.usage!.total_tokens;
-          }
-        });
-      }
+      result.data.on("data", (data: Stream) => {
+        console.log(data);
+      });
+      // const assistantMessage = result.data.choices[0].message?.content;
+      // if (result.data.usage) {
+      //   await db.chats.where({ id: chatId }).modify((chat) => {
+      //     if (chat.totalTokens) {
+      //       chat.totalTokens += result.data.usage!.total_tokens;
+      //     } else {
+      //       chat.totalTokens = result.data.usage!.total_tokens;
+      //     }
+      //   });
+      // }
       setSubmitting(false);
 
-      await db.messages.add({
-        id: nanoid(),
-        chatId,
-        content: assistantMessage ?? "unknown reponse",
-        role: "assistant",
-        createdAt: new Date(),
-      });
+      // await db.messages.add({
+      //   id: nanoid(),
+      //   chatId,
+      //   content: assistantMessage ?? "unknown reponse",
+      //   role: "assistant",
+      //   createdAt: new Date(),
+      // });
 
-      if (chat?.description === "New Chat") {
-        const messages = await db.messages
-          .where({ chatId })
-          .sortBy("createdAt");
-        const createChatDescription = await createChatCompletion(apiKey, [
-          {
-            role: "system",
-            content: getSystemMessage(),
-          },
-          ...(messages ?? []).map((message) => ({
-            role: message.role,
-            content: message.content,
-          })),
-          {
-            role: "user",
-            content:
-              "What would be a short and relevant title for this chat ? You must strictly answer with only the title, no other text is allowed.",
-          },
-        ]);
-        const chatDescription =
-          createChatDescription.data.choices[0].message?.content;
+      // if (chat?.description === Locales.Home.NewChat) {
+      //   const messages = await db.messages
+      //     .where({ chatId })
+      //     .sortBy("createdAt");
+      //   const createChatDescription = await createChatCompletion(apiKey, [
+      //     {
+      //       role: "system",
+      //       content: getSystemMessage(),
+      //     },
+      //     ...(messages ?? []).map((message) => ({
+      //       role: message.role,
+      //       content: message.content,
+      //     })),
+      //     {
+      //       role: "user",
+      //       content: Locales.Chat.Description,
+      //     },
+      //   ]);
+      //   const chatDescription =
+      //     createChatDescription.data.choices[0].message?.content;
 
-        if (createChatDescription.data.usage) {
-          await db.chats.where({ id: chatId }).modify((chat) => {
-            chat.description = chatDescription ?? "New Chat";
-            if (chat.totalTokens) {
-              chat.totalTokens +=
-                createChatDescription.data.usage!.total_tokens;
-            } else {
-              chat.totalTokens = createChatDescription.data.usage!.total_tokens;
-            }
-          });
-        }
-      }
+      //   if (createChatDescription.data.usage) {
+      //     await db.chats.where({ id: chatId }).modify((chat) => {
+      //       chat.description = chatDescription ?? Locales.Home.NewChat;
+      //       if (chat.totalTokens) {
+      //         chat.totalTokens +=
+      //           createChatDescription.data.usage!.total_tokens;
+      //       } else {
+      //         chat.totalTokens = createChatDescription.data.usage!.total_tokens;
+      //       }
+      //     });
+      //   }
+      // }
     } catch (error: any) {
-      if (error.toJSON().message === "Network Error") {
-        notifications.show({
-          title: Locales.Notification.Error,
-          color: "red",
-          message: Locales.Notification.NetworkError,
-        });
-      }
-      const message = error.response?.data?.error?.message;
-      if (message) {
-        notifications.show({
-          title: Locales.Notification.Error,
-          color: "red",
-          message,
-        });
-      }
+      console.error(error);
+      // if (error.toJSON().message === "Network Error") {
+      //   notifications.show({
+      //     title: Locales.Notification.Error,
+      //     color: "red",
+      //     message: Locales.Notification.NetworkError,
+      //   });
+      // }
+      // const message = error.response?.data?.error?.message;
+      // if (message) {
+      //   notifications.show({
+      //     title: Locales.Notification.Error,
+      //     color: "red",
+      //     message,
+      //   });
+      // }
     } finally {
       setSubmitting(false);
     }

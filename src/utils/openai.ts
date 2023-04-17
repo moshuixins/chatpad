@@ -21,11 +21,16 @@ export async function createChatCompletion(
     apiKey,
     process.env.OPENAI_API_BASE_PATH || "https://api.openai.com/v1"
   );
-  return client.createChatCompletion({
-    model,
-    stream: false,
-    messages,
-  });
+  return client.createChatCompletion(
+    {
+      model,
+      stream: true,
+      messages,
+    },
+    {
+      responseType: "stream",
+    }
+  );
 }
 
 export async function checkOpenAIKey(apiKey: string) {

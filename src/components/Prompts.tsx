@@ -8,6 +8,7 @@ import { db } from "../db";
 import { createChatCompletion } from "../utils/openai";
 import { DeletePromptModal } from "./DeletePromptModal";
 import { EditPromptModal } from "./EditPromptModal";
+import Locales from "../locales";
 
 export function Prompts({
   onPlay,
@@ -88,7 +89,7 @@ export function Prompts({
                   const id = nanoid();
                   await db.chats.add({
                     id,
-                    description: "New Chat",
+                    description: Locales.Home.NewChat,
                     totalTokens: 0,
                     createdAt: new Date(),
                   });
@@ -105,8 +106,7 @@ export function Prompts({
                   const result = await createChatCompletion(apiKey, [
                     {
                       role: "system",
-                      content:
-                        "You are ChatGPT, a large language model trained by OpenAI.",
+                      content: Locales.Chat.Prompt.Default,
                     },
                     { role: "user", content: prompt.content },
                   ]);

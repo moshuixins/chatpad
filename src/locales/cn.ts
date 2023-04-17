@@ -86,6 +86,8 @@ const cn = {
     Tone: "语气",
     Style: "风格",
     Format: "格式",
+    Description:
+      "这个聊天的简短而相关的标题是什么？您必须严格只回答标题，不允许其他文字。",
     Prompt: {
       Default: "你是ChatGPT，OpenAI训练的大型语言模型。",
       Character: "你是{character}。",
