@@ -1,5 +1,10 @@
-import { Settings } from "./../db/index";
-const cn = {
+import type { LocaleType } from "./index";
+
+const cn: LocaleType = {
+  Language: {
+    label: "简体中文",
+    value: "cn",
+  },
   Home: {
     NewChat: "新的聊天",
     NewPrompt: "新的提示",
@@ -42,6 +47,7 @@ const cn = {
   Settings: {
     Title: "设置",
     GetKey: "获取你的OpenAI Key",
+    Stream: "流式传输",
     Prompt: "API Key仅仅用于与OpenAI API进行通信，不会被存储在任何地方。",
     Warning: "警告",
     WarningDescription:
@@ -87,7 +93,7 @@ const cn = {
     Style: "风格",
     Format: "格式",
     Description:
-      "这个聊天的简短而相关的标题是什么？您必须严格只回答标题，不允许其他文字。",
+      "这个聊天的简短而相关的标题是什么？你必须严格只回答标题，不回答任何其他文字。",
     Prompt: {
       Default: "你是ChatGPT，OpenAI训练的大型语言模型。",
       Character: "你是{character}。",
@@ -255,7 +261,5 @@ const cn = {
     },
   ],
 };
-
-export type LocaleType = typeof cn;
 
 export default cn;

@@ -1,9 +1,9 @@
 import CN from "./cn";
 import EN from "./en";
-export type { LocaleType } from "./cn";
+export type { LocaleType } from "./en";
 
 export const AllLangs = ["en", "cn"] as const;
-type Lang = typeof AllLangs[number];
+type Lang = (typeof AllLangs)[number];
 
 const LANG_KEY = "lang";
 
@@ -25,7 +25,7 @@ function getLanguage() {
   try {
     return navigator.language.toLowerCase();
   } catch {
-    return "cn";
+    return "en";
   }
 }
 
@@ -45,9 +45,13 @@ export function getLang(): Lang {
   }
 }
 
-export function changeLang(lang: Lang) {
+export function changeLang(lang: string) {
   setItem(LANG_KEY, lang);
   location.reload();
+}
+
+export function getAllLangs() {
+  return [EN.Language, CN.Language];
 }
 
 export default { en: EN, cn: CN }[getLang()];

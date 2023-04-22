@@ -1,6 +1,8 @@
-import type { LocaleType } from "./index";
-
-const en: LocaleType = {
+const en = {
+  Language: {
+    label: "English",
+    value: "en",
+  },
   Home: {
     NewChat: "New Chat",
     NewPrompt: "New Prompt",
@@ -47,6 +49,8 @@ const en: LocaleType = {
   Settings: {
     Title: "Settings",
     GetKey: "Get your OpenAI Key",
+    // 流式传输
+    Stream: "Stream Transmission",
     Prompt:
       "The API Key is stored locally on your browser and never sent anywhere else.",
     Warning: "Warning",
@@ -284,5 +288,7 @@ const en: LocaleType = {
     { value: "Explain like I'm five", label: "Explain Like I'm Five" },
   ],
 };
+
+export type LocaleType = typeof en;
 
 export default en;

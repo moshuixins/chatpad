@@ -25,6 +25,7 @@ export interface Prompt {
 
 export interface Settings {
   id: "general";
+  stream?: boolean;
   openAiApiKey?: string;
   openAiModel?: string;
 }

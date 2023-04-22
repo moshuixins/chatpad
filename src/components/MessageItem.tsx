@@ -20,12 +20,19 @@ import "../styles/markdown.scss";
 import { CreatePromptModal } from "./CreatePromptModal";
 import { LogoIcon } from "./Logo";
 import { ScrollIntoView } from "./ScrollIntoView";
+import { getLang } from "../locales";
 
 export function MessageItem({ message }: { message: Message }) {
   const clipboard = useClipboard({ timeout: 500 });
   const wordCount = useMemo(() => {
-    var matches = message.content.match(/[\w\d\’\'-\(\)]+/gi);
-    return matches ? matches.length : 0;
+    var lang = getLang();
+    if (lang === "en") {
+      var matches = message.content.match(/[\w\d\’\'-\(\)]+/gi);
+      return matches ? matches.length : 0;
+    } else if (lang === "cn") {
+      var matches = message.content.match(/[\u4e00-\u9fa5]/gi);
+      return matches ? matches.length : 0;
+    }
   }, [message.content]);
 
   return (

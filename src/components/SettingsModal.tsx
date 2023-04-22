@@ -4,6 +4,7 @@ import {
   Button,
   Flex,
   List,
+  Switch,
   Modal,
   PasswordInput,
   Select,
@@ -17,7 +18,7 @@ import { cloneElement, ReactElement, useEffect, useState } from "react";
 import { db } from "../db";
 import { availableModels, defaultModel } from "../utils/constants";
 import { checkOpenAIKey } from "../utils/openai";
-import Locales from "../locales";
+import Locales, { changeLang, getAllLangs } from "../locales";
 
 export function SettingsModal({ children }: { children: ReactElement }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -25,6 +26,7 @@ export function SettingsModal({ children }: { children: ReactElement }) {
 
   const [value, setValue] = useState("");
   const [model, setModel] = useState(defaultModel);
+  const [stream, setStream] = useState(false);
 
   const settings = useLiveQuery(async () => {
     return db.settings.where({ id: "general" }).first();
@@ -36,6 +38,9 @@ export function SettingsModal({ children }: { children: ReactElement }) {
     }
     if (settings?.openAiModel) {
       setModel(settings.openAiModel);
+    }
+    if (settings?.stream) {
+      setStream(settings.stream);
     }
   }, [settings]);
 
@@ -49,6 +54,28 @@ export function SettingsModal({ children }: { children: ReactElement }) {
         size="lg"
       >
         <Stack>
+          <Flex gap="xs" align="end">
+            <Text size="sm" weight="medium" sx={{ flex: 1 }}>
+              {Locales.Settings.Stream}
+            </Text>
+            <Switch
+              size="sm"
+              checked={stream}
+              onChange={(e) => {
+                db.settings.where({ id: "general" }).modify((apiKey) => {
+                  setStream(!e.target.checked);
+                  apiKey.stream = !e.target.checked;
+                });
+              }}
+            />
+          </Flex>
+          <Select
+            label="Language"
+            value={Locales.Language.value}
+            onChange={(value) => changeLang(value as string)}
+            withinPortal
+            data={getAllLangs()}
+          />
           <form
             onSubmit={async (event) => {
               try {
